@@ -1,0 +1,20 @@
+// WAP to perform linear addition in array using recursion
+
+# include <stdio.h>
+
+int linear_addition(int * array, int size)
+{
+    if(size == 1)
+        return *(array);  // array[0]
+
+    // return linear_addtion(array, size - 1) + array[size - 1];
+    return linear_addition(array, size - 1) + *(array + size - 1);
+}
+
+// testing
+void main()
+{
+    int array[] = {1, 2, 3, 4, 5};
+    
+    printf("%d", linear_addition(&array[0], 5));
+}
