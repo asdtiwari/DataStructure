@@ -1,0 +1,28 @@
+// WAP to reverse the array using recursion
+
+# include <stdio.h>
+
+void reverse(int * array, int start, int end)
+{
+    if(start < end)
+    {
+        // swapping
+        int tmp = *(array + start);
+        *(array + start) = *(array + end);
+        *(array + end) = tmp;
+        
+        // recursive call
+        reverse(array, start + 1, end -1);
+    }
+}
+
+// testing
+void main()
+{
+    int array[] = {1, 2, 3, 4, 5};
+    
+    reverse(&array[0], 0, 5 - 1);
+    
+    for(int i = 0; i< 5; i++)
+        printf(" %d ", array[i]);
+}
