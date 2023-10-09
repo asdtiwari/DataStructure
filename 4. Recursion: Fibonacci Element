@@ -1,0 +1,19 @@
+/* WAP to display the element of  fibonacci series using binary recursion.
+    This logic of this program is for getting particular element of fibonacci series.
+    0 1 1 2 3 5 8 13 21 ...    */
+    
+# include <stdio.h>
+
+int fibonacci(int n)    // n represent postion
+{
+    if(n == 1 || n == 0)
+        return n;
+    
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+// testing
+void main()
+{
+    printf(" %d ", fibonacci(7));
+}
