@@ -1,0 +1,23 @@
+/* WAP to add the elements of array using binary sum recursive function
+    It will work for the array that has size 2^n */
+
+# include <stdio.h>
+
+int binary_sum(int * array, int index, int size)
+{
+    if(size == 1)
+        return *(array + index);    // array[index];
+    
+    return binary_sum(array, index, size / 2) + binary_sum(array, index + size / 2, size / 2);
+}
+
+//testing
+void main()
+{
+    int array[] = {1, 2, 3, 4};
+
+    // Program can't calculate the addition of elements
+    // int array[] = {1, 2, 3, 4, 5};  
+    
+    printf(" %d ", binary_sum(&array[0], 0, 4));
+}
