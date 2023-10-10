@@ -1,0 +1,23 @@
+/* Program to generate the fibonacci series. The user enter the limit of series. */
+
+# include <stdio.h>
+
+void series(int limit)
+{
+    static int num1 = -1, num2 = 1;
+    if(limit > 0)
+    {
+        int tmp = num1 + num2;
+        num1 = num2;
+        num2 = tmp;
+        printf(" %d ", tmp);
+        series(limit - 1);
+    }
+}
+
+// testing
+
+void main()
+{
+    series(10);
+}
