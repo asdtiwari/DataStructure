@@ -1,0 +1,19 @@
+/* Program to display first four multiple of a number using recursion
+example: 4, 40, 400, 4000; 10, 100, 1000, 10000 etc... */
+
+# include <stdio.h>
+
+void multiple(int num)
+{
+    if(num < 10000)
+    {
+        multiple(num * 10);
+        printf(" %d ", num);
+    }
+}
+
+// testing
+void main()
+{
+    multiple(4);
+}
