@@ -1,0 +1,23 @@
+/* Program to implement the solution of Tower of Hanoi */
+
+# include <stdio.h>
+
+void solution(int disc, char * src, char * aux, char * dest)
+{
+    if(disc == 1)
+        printf("Disc %d moved from %s to %s \n", disc, src, dest);
+    
+    else
+    {
+        solution(disc - 1, src, dest, aux);
+        printf("Disc %d moved form %s to %s \n", disc, src, dest);
+        solution(disc - 1, aux, src, dest);
+    }
+}
+
+// testing
+
+void main()
+{
+    solution(3, "Source", "Auxillary", "Destination");
+}
