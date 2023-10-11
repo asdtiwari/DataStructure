@@ -1,0 +1,18 @@
+/* Program to ask a number and power to be calculated for that number */
+
+# include <stdio.h>
+
+int power(int num, int ind)
+{
+    if(ind == 0)
+        return 1;
+        
+    return power(num, ind - 1) * num;
+}
+
+// Testing
+
+void main()
+{
+    printf(" %d ", power(2, 5));
+}
