@@ -1,0 +1,46 @@
+/* Program to calculate the binary coefficient of nCr of two numbers.
+Which can be calculated as n! / ((n-r)! * r!) */
+
+# include <stdio.h>
+
+// Efficient method
+
+int bin_coeff (int n, int r)
+{
+    if (r > n)
+    {
+        printf("r can't be greater than n");
+        return 0;
+    }
+    
+    if(r == 0 || n == r)
+        return 1;
+    
+    return bin_coeff(n - 1, r - 1) + bin_coeff(n - 1, r);
+}
+
+/* //Alternate method
+
+int factorial (int num)
+{
+    if (num == 1 || num == 0)
+        return 1;
+    
+    return factorial(num - 1) * num;
+}
+
+int bin_coeff (int n, int r)
+{
+    if (n < r)
+    {
+        printf("Value of n can't be less than r \n");
+        return 0;
+    }
+    return factorial(n) / ((factorial(n - r)) * factorial(r));
+} */
+
+// testing
+void main ()
+{
+    printf(" %d ", bin_coeff(4, 2));
+}
