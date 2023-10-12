@@ -1,0 +1,20 @@
+/* Program to generate the table of number entered by user */
+
+# include <stdio.h>
+
+void table (int num, int multi)
+{
+    if (multi <= 10)
+    {
+        printf(" %d * %d = %d \n", num, multi, (num * multi));
+        table(num, multi + 1);
+    }
+}
+
+// testing
+
+void main ()
+{
+    int num = 7;
+    table(num, 1);
+}
