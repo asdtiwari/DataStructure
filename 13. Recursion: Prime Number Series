@@ -1,0 +1,41 @@
+/* Program to check if the entered number is a prime or not. 
+num should be greater than or equal to 2*/
+
+# include <stdio.h>
+
+int n = 2;
+
+int prime(int num)
+{
+    
+    if(num == n)
+        return 1;
+    
+    if(!(num % n))
+        return 0;
+    
+    n++;
+    return prime(num);
+}
+
+void series(int end)
+{
+    static int start = 2;
+    
+    if(start > end)
+        return;
+    
+    n = 2;
+    if(prime(start))
+        printf(" %d ", start);
+    
+    start++;
+    series(end);
+}
+
+// testing
+
+void main()
+{
+    series(100);
+}
