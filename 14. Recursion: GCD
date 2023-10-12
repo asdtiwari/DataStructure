@@ -1,0 +1,26 @@
+/* Program to find the gcd (greatest common divisor) between two numbers. */
+
+# include <stdio.h>
+
+int gcd(int num, int num2)
+{
+    int num3, num4;
+    
+    num3 = num >= num2 ? num : num2;    // Ensuring greatest no should be in num3
+    num4 = num >= num2 ? num2: num;     // Ensuring smallest no should be in num4
+
+    if(! (num3 % num4))     // In case we reach to final answer, i.e., rem = 0
+        return num2;        
+    
+    if(num3 % num4 == 1)    // In case we reach to rem = 1
+        return 1;
+    
+    return gcd(num4, num3 % num4);  // again check smallest num and remainder
+}
+
+// testing
+
+void main()
+{
+    printf(" %d ", gcd(13, 7));
+}
