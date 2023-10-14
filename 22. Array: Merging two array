@@ -1,0 +1,51 @@
+/* Program to merge two array */
+
+# include <stdio.h>
+
+void merge (int *array, int size, int *array2, int size2, int *array3, int size3)
+{
+    int j = 0;
+    for(int i = 0; i < size; i++, j++)
+        *(array3 + j) = *(array + i);
+    
+    for(int i = 0; i < size; i++, j++)
+        *(array3 + j) = *(array2 + i);
+    
+    printf("\n Merging Completed \n");
+}
+
+// testing
+
+void main ()
+{
+    # define max 5
+    # define max2 5
+    # define max3 (max + max2)
+    
+    int size = max;
+    int array [max] = {1, 2, 3, 4, 5};
+    
+    printf("\n Array \n");
+    for(int i = 0; i< size; i++)
+        printf(" %d ", array[i]);
+    printf("\n");
+    
+    int size2 = max2;
+    int array2 [max2] = {0, 6, 7, 8, 9};
+
+    printf("\n Array \n");
+    for(int i = 0; i< size2; i++)
+        printf(" %d ", array2[i]);
+    printf("\n");
+    
+    int size3 = max + max2;
+    int array3 [max3];
+    
+    merge(&array[0], size, &array2[0], size2, &array3[0], size3);
+    
+    printf("\n Array \n");
+    for(int i = 0; i< size3; i++)
+        printf(" %d ", array3[i]);
+    printf("\n");
+    
+}
