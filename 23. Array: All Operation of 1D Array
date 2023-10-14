@@ -1,0 +1,219 @@
+/* Program to perform all basic operations on arrays */
+
+# include <stdio.h>
+
+void write (int *array, int size)
+{
+    printf("\n Enter %d elements in array \n", size);
+
+    for(int i = 0; i < size; i++)
+        scanf("%d", (array+i));
+
+    printf(" Elements inserted successfullly \n");
+}
+
+void read (int *array, int size)
+{
+    printf("\n Elements of Array \n");
+
+    for(int i = 0; i < size; i++)
+        printf(" %d ", *(array + i));
+
+    printf("\n All elements printed \n");
+}
+
+void insert (int * array, int * size, int pos, int element)
+{
+    int i = 0;
+    for (i = (*size); i > pos - 1; i--)
+        *(array + i) = *(array + i - 1);
+    
+    *(array + i) = element;
+    
+    *size += 1;
+    
+    printf("\n Element inserted sucessfully \n");
+}
+
+int delete (int * array, int * size, int position)
+{
+    for (int i = position - 1; i < (*size) - 1; i++)
+        array[i] = array[i + 1];
+    
+    *size -= 1;
+    
+    printf("\n Element Deleted Successfully \n");
+}
+
+void traverse (int * array, int size)
+{
+    printf("\n Elements of array: \n");
+    for (int i = 0; i < size; i++)
+        printf(" %d ", *(array + i));
+    printf("\n");
+}
+
+void merge (int *array, int size, int *array2, int size2, int *array3, int size3)
+{
+    int j = 0;
+    for(int i = 0; i < size; i++, j++)
+        *(array3 + j) = *(array + i);
+    
+    for(int i = 0; i < size2; i++, j++)
+        *(array3 + j) = *(array2 + i);
+    
+    printf("\n Merging Completed \n");
+}
+
+void array_app ()
+{
+    # define max 100
+    
+    int array [max];
+    int size = -1;
+    
+    int element, position;
+    
+    int opt;
+    
+    do
+    {
+        
+        printf("\n ==================== \n");
+        printf(" Array App \n");
+        printf(" 1 :: Write \n");
+        printf(" 2 :: Read \n");
+        printf(" 3 :: Insert \n");
+        printf(" 4 :: Delete \n");
+        printf(" 5 :: Traverse \n");
+        printf(" 6 :: Merged \n");
+        printf(" 7 :: Exit \n");
+        printf(" Enter your choice: ");
+        scanf("%d", &opt);
+        
+        switch (opt)
+        {
+            
+            case 1:
+                printf("\n Enter the size of the array: ");
+                scanf("%d", &size);
+                
+                if (size > max)
+                    printf("\n Size is too large \n It should be <= %d \n", max);
+                
+                else
+                    write(&array[0], size);
+                
+                break;
+            
+            case 2:
+                if (size == -1)
+                    printf("\n Array size is not assigned \n First perform write \n");
+                
+                else
+                    read(&array[0], size);
+                break;
+            
+            case 3:
+                if (size == -1)
+                    printf("\n Array size is not assigned \n First perform write \n");
+                
+                else
+                {
+                    printf("\n Enter the position of array: ");
+                    scanf("%d", &position);
+                    
+                    if(position > size || position < 0)
+                        printf("\n Position should be 1 to %d \n", size);
+                    
+                    else
+                    {
+                        printf("\n Enter the element to insert: ");
+                        scanf("%d", &element);
+                        
+                        insert(&array[0], &size, position, element);
+                    }    
+                }
+                
+                break;
+                
+            case 4:
+                if (size == -1)
+                    printf("\n Array size is not assigned \n First perform write \n");
+                
+                else
+                {
+                    printf("\n Enter the position of array: ");
+                    scanf("%d", &position);
+                    
+                    delete(&array[0], &size, position);
+                }
+                
+                break;
+                
+            case 5:
+                if (size == -1)
+                    printf("\n Array size is not assigned \n First perform write \n");
+                
+                else
+                    traverse(&array[0], size);
+                
+                break;
+                
+            case 6:
+                {
+                    int size1;
+                    
+                    printf("\n Enter the size of first array: ");
+                    scanf("%d", &size1);
+                    
+                    if (size1 > max)
+                        printf("\n Size is too large \n It should be <= %d \n", max);
+                    
+                    else
+                    {
+                        int size2;
+                        
+                        printf("\n Enter the size of second array: ");
+                        scanf("%d", &size2);
+                        
+                        if (size2 > max)
+                            printf("\n Size is too large \n It should be <= %d \n", max);
+                        
+                        else
+                        {
+                            int size3 = size1 + size2;
+                            
+                            int a1 [max];
+                            int a2 [max];
+                            int a3 [max];
+                            
+                            write(&a1[0], size1);
+                            write(&a2[0], size2);
+                            
+                            merge(&a1[0], size1, &a2[0], size2, &a3[0], size3);
+                            
+                            read(&a1[0], size1);
+                            read(&a2[0], size2);
+                            read(&a3[0], size3);
+                        }
+                    }
+                }
+                break;
+                
+            case 7:
+                printf("\n Exiting... \n");
+                break;
+                
+            default:
+                printf("\n !!! Invalid Choice !!! \n");
+        }
+        
+    }while (opt != 7);
+}
+
+// testing
+void main ()
+{
+    array_app();
+}
