@@ -1,0 +1,23 @@
+/* Program to traverse an array */
+
+# include <stdio.h>
+
+void traverse (int * array, int size)
+{
+    printf("\n Elements of array: \n");
+    for (int i = 0; i < size; i++)
+        printf(" %d ", *(array + i));
+    printf("\n");
+}
+
+// testing
+
+void main()
+{
+    # define max 5
+    int size = max;
+    
+    int array [max] = {1, 2, 3, 4, 5};
+    
+    traverse(&array[0], size);
+}
