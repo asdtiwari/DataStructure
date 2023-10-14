@@ -1,0 +1,21 @@
+/* Prgram show use of initializers for arrays. */
+
+# include <stdio.h>
+# define size 10
+
+void main()
+{
+    int array[size] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    
+    printf("Array 1: \n");
+    for(int i = 0; i < size; i++)
+        printf(" %d ", array[i]);
+    printf("\n");
+
+    char array2[] = {'A', 'k', 'h', 'i', 'l', 'e', 's', 'h'};
+    
+    printf("Array 2: \n");
+    for(int i = 0; array2[i] != '\0'; i++)
+        printf("%c", array2[i]);
+    printf("\n");
+}
