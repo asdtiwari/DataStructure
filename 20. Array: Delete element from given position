@@ -1,0 +1,35 @@
+/* Program to delete an element from a particular index (index = position - 1) */
+
+# include <stdio.h>
+
+int delete (int * array, int * size, int position)
+{
+    for (int i = position - 1; i < (*size) - 1; i++)
+        array[i] = array[i + 1];
+    
+    *size -= 1;
+    
+    printf("\n Element Deleted Successfully \n");
+}
+
+// testing
+
+void main ()
+{
+    # define max 5
+    int array[max] = {1, 2, 3, 4, 5};
+    
+    int size = max;
+    
+    printf("\n Array: \n");
+    for(int i = 0; i < size; i++)
+        printf(" %d ", array[i]);
+    printf("\n");
+    
+    delete(&array[0], &size, 3);
+    
+    printf("\n Output: \n");
+    for(int i = 0; i < size; i++)
+        printf(" %d ", array[i]);
+    printf("\n");
+}
