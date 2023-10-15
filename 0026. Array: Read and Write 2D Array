@@ -1,0 +1,48 @@
+/* Program to read and write 2D array */
+
+# include <stdio.h>
+
+void write (int * array, int row, int col)
+{
+    printf("\n Enter %d elements in array: \n", (row * col));
+    
+    for (int i = 0; i < row; i++)
+        for (int j = 0; j < col; j++)
+            scanf("%d", (array + (i * col) + j));
+    
+    printf("\n Elements inserted successfully \n");
+}
+
+void read (int * array, int row, int col)
+{
+    printf("\n Elements of Array: \n");
+    
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+            printf(" %d ", *(array + (i * col) + j));
+            
+        printf("\n");
+    }
+}
+
+// testing
+void main ()
+{
+    # define max 100
+    int row, col;
+    
+    int array [max][max];
+    
+    printf("\n Enter row and column: ");
+    scanf("%d%d", &row, &col);
+    
+    if (row > 100 || col > 100)
+        printf("\n Row and column should <= 100 \n");
+    
+    else
+    {
+        write(&array[0][0], row, col);
+        read(&array[0][0], row, col);
+    }
+}
