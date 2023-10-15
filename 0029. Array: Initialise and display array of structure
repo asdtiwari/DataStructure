@@ -1,0 +1,21 @@
+/* Initialise and display array of structure */
+
+# include <stdio.h>
+
+void main ()
+{
+    struct person
+    {
+        char name [20];
+        int age;
+        float grade;
+    } p [3] = {
+                {"Akhilesh", 19, 9.05},
+                {"Abhishek", 21, 8.9},
+                {"Suresh", 25, 7.6}
+    };
+    
+    printf("\n Output \n");
+    for (int i = 0; i < 3; i++)
+        printf(" %s %d %.2f \n", p[i].name, p[i].age, p[i].grade);
+}
