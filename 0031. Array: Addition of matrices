@@ -1,0 +1,30 @@
+/* Matrix addtion */
+
+# include <stdio.h>
+
+// m1 means first matrix, m2 means second matrix and m3 is addition matrix
+void addition (int *m1, int *m2, int *m3, int row, int col)
+{
+
+    for (int i = 0; i < row; i++)
+        for(int j = 0; j < col; j++)
+            *(m3 + (i * col) + j) = *(m1 + (i * col) + j) + *(m2 + (i * col) + j);
+}
+
+// testing
+void main ()
+{
+    int row = 2, col = 2;
+    int m1[2][2] = {1, 2, 3, 4};
+    int m2[2][2] = {5, 6, 7, 8};
+    int m3[row][col];
+    
+    addition(&m1[0][0], &m2[0][0], &m3[0][0], row, col);
+    
+    for(int i = 0; i < row; i++)
+    {
+        for(int j = 0; j < col; j++)
+            printf(" %d ", m3[i][j]);
+        printf("\n");
+    }
+}
