@@ -1,0 +1,39 @@
+/* Program to check the given number is palindrome or not using array */
+
+# include <stdio.h>
+# include <math.h>
+# include <malloc.h>
+
+int check (int num)
+{
+    int size = ((int)log10(num)) + 1;
+    
+    int *array = (int *)malloc(sizeof(int) * size);
+    
+    int i = 0;
+    while (num != 0)
+    {
+        *(array + i) = num % 10;
+        num /= 10;
+        i++;
+    }
+    
+    i = 0;
+    for (int j = size - 1; i < j; i++, j--)
+        if (array[i] != array[j])
+            return 0;
+    
+    return 1;
+}
+
+// testing 
+void main ()
+{
+    int a = 1221;
+    
+    if(check(a))
+        printf("\n Palindrome \n");
+    
+    else
+        printf("\n Not a Palindrome \n");
+}
