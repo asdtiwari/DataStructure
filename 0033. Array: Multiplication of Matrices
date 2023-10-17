@@ -1,0 +1,75 @@
+/* Program to read two matrix and multiply them. */
+
+# include <stdio.h>
+
+/* m1 for first matrix, m2 for second matrix, and multi for multiplication.
+row is row of m1 and multi and col2 is column of m2 and multi which fulfill 
+necessary condition of matrix multiplication while col is column of m1 and
+row2 is row of m2 */
+void multiply (int * m1, int * m2, int * multi, int row, int col, int row2 , int col2)
+{
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col2; j++)
+        {
+            *(multi + (i * col2) + j) = 0;
+            
+            for (int k = 0; k < col; k++)
+            {
+                // multi and m1 are acting as row major and m2 is acting as column major
+                *(multi + (i * col2) + j) += *(m1 + (i * col) + k) * *(m2 + j + (k * col2));
+            }
+        }
+    }
+}
+
+void write (int * array, int row, int col)
+{
+    printf("\n Enter %d elements in array: \n", (row * col));
+    
+    for (int i = 0; i < row; i++)
+        for (int j = 0; j < col; j++)
+            scanf("%d", (array + (i * col) + j));
+    
+    printf("\n Elements inserted successfully \n");
+}
+
+void read (int * array, int row, int col)
+{
+    printf("\n Elements of Array: \n");
+    
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+            printf(" %d ", *(array + (i * col) + j));
+            
+        printf("\n");
+    }
+}
+
+// testing
+void main ()
+{
+    # define size 100
+    int m1 [size][size];
+    int m2 [size][size];
+    int multi [size][size];
+    
+    int row, col;
+    printf("\n Enter row and col for 1st matrix: ");
+    scanf("%d%d", &row, &col);
+    
+    // row2 = col since column of 1st matrix must be equal to row of 2nd one
+    int col2, row2 = col;   
+    printf("\n Enter the col for 2nd matrix: ");
+    scanf("%d", &col2);
+    
+    write(&m1[0][0], row, col);
+    write(&m2[0][0], row2, col2);
+    
+    multiply(&m1[0][0], &m2[0][0], &multi[0][0], row, col, row2, col2);
+    
+    read(&m1[0][0], row, col);
+    read(&m2[0][0], row2, col2);
+    read(&multi[0][0], row, col2);
+}
