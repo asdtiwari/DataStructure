@@ -1,0 +1,62 @@
+/* Program to transpose a matrix */
+
+# include <stdio.h>
+
+/* array a is used for holding the values from original matrix while 
+array is used for holding the values of transposed matrix */
+
+void transpose (int *a, int *b, int row, int col)
+{
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            *(b + i + (j * row)) = *(a + (i * col) + j);
+        }
+    }
+    printf("\n Transposed Successfully \n");
+}
+
+void write (int * array, int row, int col)
+{
+    printf("\n Enter %d elements in array: \n", (row * col));
+    
+    for (int i = 0; i < row; i++)
+        for (int j = 0; j < col; j++)
+            scanf("%d", (array + (i * col) + j));
+    
+    printf("\n Elements inserted successfully \n");
+}
+
+void read (int * array, int row, int col)
+{
+    printf("\n Elements of Array: \n");
+    
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+            printf(" %d ", *(array + (i * col) + j));
+            
+        printf("\n");
+    }
+}
+
+// testing
+void main ()
+{
+    #define max 100
+    int array [max][max];
+    int trans [max][max];
+    
+    int row, col;
+    
+    printf("\n Enter row and col (<=100): ");
+    scanf("%d%d", &row, &col);
+    
+    write(&array[0][0], row, col);
+    read(&array[0][0], row, col);
+    
+    transpose(&array[0][0], &trans[0][0], row, col);
+    
+    read(&trans[0][0], col, row);
+}
