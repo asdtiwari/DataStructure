@@ -1,0 +1,64 @@
+/* Program to find sum of the elements above and below the principal diagonals element. */
+
+# include <stdio.h>
+
+int sum_above_diagonal (int *matrix, int size)
+{
+    int sum = 0;
+    for (int i = 0; i < size; i++)
+        for (int j = i + 1; j < size; j++)
+            sum += *(matrix + i * size + j);
+    return sum;
+}
+
+int sum_below_diagonal (int *matrix, int size)
+{
+    int sum = 0;
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < i; j++)
+            sum += *(matrix + i * size + j);
+    return sum;
+}
+
+void write (int * array, int row, int col)
+{
+    printf("\n Enter %d elements in array: \n", (row * col));
+    
+    for (int i = 0; i < row; i++)
+        for (int j = 0; j < col; j++)
+            scanf("%d", (array + (i * col) + j));
+    
+    printf("\n Elements inserted successfully \n");
+}
+
+void read (int * array, int row, int col)
+{
+    printf("\n Elements of Array: \n");
+    
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+            printf(" %d ", *(array + (i * col) + j));
+            
+        printf("\n");
+    }
+}
+
+// testing
+void main ()
+{
+    # define max 100
+    int matrix[max][max];
+    
+    int size;
+    printf("Enter the size of sq matrix (<= 100): ");
+    scanf("%d", &size);
+    
+    write(&matrix[0][0], size, size);
+    
+    read(&matrix[0][0], size, size);
+    
+    printf("\n Sum of element above diagonal is %d \n", sum_above_diagonal(&matrix[0][0], size));
+    
+    printf("\n Sum of element above diagonal is %d \n", sum_below_diagonal(&matrix[0][0], size));
+}
