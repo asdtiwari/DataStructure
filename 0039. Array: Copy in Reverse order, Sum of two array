@@ -1,0 +1,63 @@
+/* Program to read and write array and copy the contents of array A in array B
+in reverse order then find sum of array A and array B and store it in array C */
+
+# include <stdio.h>
+
+void reverse_copy(int * array, int * reverse, int size)
+{
+    for (int i = 0; i < size; i++)
+        *(reverse + size - 1 - i) = *(array + i);
+        
+    printf("\n Copy in reverse order is completed \n");
+}
+
+void sum_of_two_array(int * array, int * array2, int * sum, int size)
+{
+    for (int i = 0; i < size; i++)
+        *(sum + i) = *(array + i) + *(array2 + i);
+    
+    printf("\n Sum of two array is completed \n");
+}
+
+void write (int *array, int size)
+{
+    printf("\n Enter %d elements in array \n", size);
+    
+    for(int i = 0; i < size; i++)
+        scanf("%d", (array+i));
+    
+    printf(" Elements inserted successfullly \n");
+}
+
+void read (int *array, int size)
+{
+    printf("\n Elements of Array \n");
+    
+    for(int i = 0; i < size; i++)
+        printf(" %d ", *(array + i));
+        
+    printf("\n All elements printed \n");
+}
+
+// testing
+void main ()
+{
+    # define max 100
+    int array1[max];
+    int array2[max];
+    int array3[max];
+    
+    int size;
+    printf("Enter the size of array (<= 100): ");
+    scanf("%d", &size);
+    
+    write(&array1[0], size);
+    read(&array1[0], size);
+    
+    reverse_copy(&array1[0], &array2[0], size);
+    read(&array2[0], size);
+    
+    sum_of_two_array(&array1[0], &array2[0], &array3[0], size);
+    read(&array3[0], size);
+    
+}
