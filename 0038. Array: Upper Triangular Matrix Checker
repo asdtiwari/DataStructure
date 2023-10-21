@@ -1,0 +1,61 @@
+/* Write a program to find whether a matrix is upper triangle or not 
+(a matrix is said to be upper traingular matrix only when its element below
+the diagonal elements are zeros) ? */
+
+# include <stdio.h>
+
+// order represent row and column of matix, here it accept either one.
+int upper_triangular (int * matrix, int order)
+{
+    for (int i = 0; i < order; i++)
+        for (int j = 0; j < i; j++)
+            if (*(matrix + i * order + j) != 0)
+                return 0;
+                
+    return 1;
+}
+
+void write (int * array, int row, int col)
+{
+    printf("\n Enter %d elements in array: \n", (row * col));
+    
+    for (int i = 0; i < row; i++)
+        for (int j = 0; j < col; j++)
+            scanf("%d", (array + (i * col) + j));
+    
+    printf("\n Elements inserted successfully \n");
+}
+
+void read (int * array, int row, int col)
+{
+    printf("\n Elements of Array: \n");
+    
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+            printf(" %d ", *(array + (i * col) + j));
+            
+        printf("\n");
+    }
+}
+
+// testing
+void main ()
+{
+    # define max 100
+    int matrix[max][max];
+    
+    int size;
+    printf("Enter the size of sq matrix (<= 100): ");
+    scanf("%d", &size);
+    
+    write(&matrix[0][0], size, size);
+    
+    read(&matrix[0][0], size, size);
+    
+    if (upper_triangular(&matrix[0][0], size))
+        printf("\n Upper Triangular Matrix \n");
+    
+    else
+        printf("\n Not a Upper Triangular Matrix \n");
+}
