@@ -1,0 +1,116 @@
+/* Program to find average of the elements, row wise and column wise */
+
+# include <stdio.h>
+# include <stdlib.h>
+
+/* Here row_average function is returning an array which contains average
+of every row elemetns */
+float * row_average (int * array, int row, int col)
+{
+    float *row_avrg = NULL;
+    row_avrg = (float *)malloc(sizeof(float) * row);
+
+    float sum_row;
+
+    for (int i = 0; i < row; i++)
+    {
+        sum_row = 0;
+        for (int j = 0; j < col; j++)
+            sum_row += *(array + i * col + j);
+
+        *(row_avrg + i) = sum_row / col;
+    }
+
+    return row_avrg;
+}
+
+/* Here col_average function is returning an array which contains average
+of every column elemetns */
+float * col_average (int * array, int row, int col)
+{
+    float *col_avrg = NULL;
+    col_avrg = (float *)malloc(sizeof(float) * col);
+
+    float sum_col;
+
+    for (int i = 0; i < col; i++)
+    {
+        sum_col = 0;
+        for (int j = 0; j < row; j++)
+            sum_col += *(array + i + j * col);
+
+        *(col_avrg + i) = sum_col / row;
+    }
+
+    return col_avrg;
+}
+
+// Function to print average of each row
+void print_row_avrg (int * array, int row, int col)
+{
+    float * tmp = row_average(array, row, col);
+    
+    printf("\n Average of \n");
+    for(int i = 0; i < row; i++)
+        printf(" Row %d is : %.2f \n", (i + 1), *(tmp + i));
+    printf("\n");
+}
+
+// Function to print average of each column
+void print_col_avrg (int * array, int row, int col)
+{
+    float * tmp = col_average(array, row, col);
+    
+    printf("\n Average of \n");
+    for(int i = 0; i < col; i++)
+        printf(" Column %d is : %.2f \n", (i + 1), *(tmp + i));
+    printf("\n");
+}
+
+void write (int * array, int row, int col)
+{
+    printf("\n Enter %d elements in array: \n", (row * col));
+    
+    for (int i = 0; i < row; i++)
+        for (int j = 0; j < col; j++)
+            scanf("%d", (array + (i * col) + j));
+    
+    printf("\n Elements inserted successfully \n");
+}
+
+void read (int * array, int row, int col)
+{
+    printf("\n Elements of Array: \n");
+    
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+            printf(" %d ", *(array + (i * col) + j));
+            
+        printf("\n");
+    }
+}
+
+// testing
+void main ()
+{
+    # define max 100
+    int row, col;
+    
+    int array [max][max];
+    
+    printf("\n Enter row and column: ");
+    scanf("%d%d", &row, &col);
+    
+    if (row > 100 || col > 100)
+        printf("\n Row and column should <= 100 \n");
+    
+    else
+    {
+        write(&array[0][0], row, col);
+        read(&array[0][0], row, col);
+        
+        print_row_avrg(&array[0][0], row, col);
+        print_col_avrg(&array[0][0], row, col);
+    }
+}
