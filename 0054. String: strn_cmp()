@@ -1,0 +1,31 @@
+/* Program to implement strncmp() */
+
+# include <stdio.h>
+# include <stdlib.h>
+
+int strn_cmp (char * first, char * second, int len)
+{
+    int i = 0;
+    while(*(first + i) != '\0' && *(second + i) != '\0' && i < len - 1)
+    {
+        if(*(first + i) != *(second + i))
+            return *(first + i) - *(second + i);
+        
+        i++;
+    }
+    
+    return *(first + i) - *(second + i);
+}
+
+// Testing
+void main ()
+{
+    char * ch1 = "Akhilesh";
+    char * ch2 = "Akhilesh Tiwari";
+
+    if(!(strn_cmp(ch1, ch2, 8)))
+        printf("Same \n");
+    else
+        printf("Different \n");
+    printf("%d \n", strn_cmp(ch1, ch2, 8));
+}
