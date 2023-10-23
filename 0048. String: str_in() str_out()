@@ -1,0 +1,39 @@
+/* Program that reads characters until a newline, stores them in an array, and terminates the string with a NULL character */
+
+# include <stdio.h>
+
+void str_in (char *ch)
+{
+	char in;
+        int i = 0;
+	while((in = getc(stdin)) != '\n')
+        {
+            *(ch + i) = in;
+            i++;
+        }
+        *(ch + i) = '\0';
+}
+
+void str_out (char *ch)
+{
+    int i = 0;
+    while(*(ch + i) != '\0')
+    {
+        putc(*(ch + i), stdout);
+        i++;
+    }
+}
+
+// Testing
+void main ()
+{
+    # define max 100
+    char ch[max];
+
+    printf("\n Enter a string: ");
+    str_in(&ch[0]);
+
+    printf("\n Output: ");
+    str_out(&ch[0]);
+    printf("\n");
+}
