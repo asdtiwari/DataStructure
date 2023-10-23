@@ -1,0 +1,61 @@
+/* Program to convert a square matrix to a unit matrix */
+
+# include <stdio.h>
+
+void sq_to_unit (int * matrix, int order)
+{
+    for (int i = 0; i < order; i++)
+    {
+        for (int j = 0; j < order; j++)
+        {
+            if (i == j)
+                *(matrix + i * order + j) = 1;
+                
+            else
+                *(matrix + i * order + j) = 0;
+        }
+    }
+    printf("\n Conversion Completed \n");
+}
+
+void write (int * array, int row, int col)
+{
+    printf("\n Enter %d elements in array: \n", (row * col));
+    
+    for (int i = 0; i < row; i++)
+        for (int j = 0; j < col; j++)
+            scanf("%d", (array + (i * col) + j));
+    
+    printf("\n Elements inserted successfully \n");
+}
+
+void read (int * array, int row, int col)
+{
+    printf("\n Elements of Array: \n");
+    
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+            printf(" %d ", *(array + (i * col) + j));
+            
+        printf("\n");
+    }
+}
+
+// testing
+void main ()
+{
+    # define max 100
+    int order;
+    
+    int array [max][max];
+    
+    printf("\n Enter order of sq matrix: ");
+    scanf("%d", &order);
+
+    write(&array[0][0], order, order);
+    read(&array[0][0], order, order);
+    
+    sq_to_unit(&array[0][0], order);
+    read(&array[0][0], order, order);
+}
