@@ -1,0 +1,32 @@
+/* Program to implement strncpy() */
+
+# include <stdio.h>
+
+char * strn_cpy (char * dest, char * src, int len)
+{
+    int i = 0;
+    while(*(src + i) != '\0' && i < len)
+    {
+        *(dest + i) = *(src + i);
+        i++;
+    }
+    *(dest + i) = '\0';
+
+    return dest;
+}
+
+// Testing
+void main ()
+{
+    # define max 100
+    char ch1[max];
+    
+    char * ch2 = "Akhilesh Tiwari";
+
+    printf("Ch2 = %s \n", ch2);
+
+    strn_cpy(&ch1[0], ch2, 8);
+
+    printf("After copied \n");
+    printf("Ch1 = %s \n", ch1);
+}
