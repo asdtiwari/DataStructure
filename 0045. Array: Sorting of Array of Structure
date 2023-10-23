@@ -1,0 +1,87 @@
+/* Program to enter records of students and display in sorted order (according to roll_no) */
+
+# include <stdio.h>
+
+typedef struct 
+{
+    int date;
+    int month;
+    int year;
+} date;
+
+typedef struct
+{
+    char name [50];
+    int roll_no;
+    char sex;
+    date dob;
+} student;
+
+void write_student (student * s, int len)
+{
+    for (int i = 0; i < len; i++)
+    {
+        printf("\n Enter the following details of student %d", i + 1);
+        printf("\n Name: ");
+        scanf("%s", (s + i)->name);
+        printf(" Roll No: ");
+        scanf("%d", &(s + i)->roll_no);
+        printf(" Sex: ");
+        while(getc(stdin) != 10);
+        scanf("%c", &(s + i)->sex);
+        printf(" DOB (DD MM YYYY): ");
+        scanf("%d%d%d", &(s +i)->dob.date, &(s + i)->dob.month, &(s + i)->dob.year);
+    }
+    printf(" Data Inserted Sucessfully \n");
+}
+
+void read_student (student * s, int len)
+{
+    printf("\n Output \n");
+    for (int i = 0; i < len ; i++)
+    {
+        printf("\n Student %d", i + 1);
+        printf("\n %-10s : %s", "Name", (s + i)->name);
+        printf("\n %-10s : %d", "Roll No", (s + i)->roll_no);
+        printf("\n %-10s : %c", "Sex", (s + i)->sex);
+        printf("\n %-10s : %d-%d-%d", "DOB", (s + i)->dob.date, (s + i)->dob.month, (s + i)->dob.year);
+        printf("\n");
+    }
+    printf("\n End..\n");
+}
+
+void sort_student (student * s, int len)
+{
+    student tmp;
+    for (int i = 0; i < len; i++)
+    {
+        for (int j = i; j > 0; j--)
+        {
+            if ((s + j)->roll_no < (s + j - 1)->roll_no)
+            {
+               tmp = *(s + j);
+               *(s + j) = *(s + j - 1);
+               *(s + j - 1) = tmp;
+            }
+        }
+    }
+}
+
+void student_app ()
+{
+    # define max 100
+    student s[max];
+    
+    int len;
+    printf("\n Enter strength of students: ");
+    scanf("%d", &len);
+
+    write_student(&s[0], len);
+    sort_student(&s[0], len);
+    read_student(&s[0], len);
+}
+
+void main ()
+{
+    student_app();
+}
