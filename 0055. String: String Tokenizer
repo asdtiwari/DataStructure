@@ -1,0 +1,29 @@
+/* Program to illustrate the example of trtok function.
+It is just similar to string tokenizer of Java
+Tokenizing refers to breaking down the sentence into small words*/
+
+# include <stdio.h>
+# include <string.h>
+
+void str_trtok (char * ch)
+{
+    char * delimt = " ";
+    char * token = strtok(ch, delimt);
+
+    while (token != NULL)
+    {
+        puts(token);
+        token = strtok(NULL, delimt);
+    }
+}
+
+// Testing
+void main ()
+{
+    /* pointer to constant string, it does not work
+    char *ch = "Akhilesh is working to secure the job in MNCs with good package."; */
+    
+    char ch[] = "Akhilesh is working to secure the job in MNCs with good package.";
+    str_trtok(ch);
+
+}
