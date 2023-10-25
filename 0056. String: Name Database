@@ -1,0 +1,73 @@
+/* Program to create a database of names */
+
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <ctype.h>
+
+void database ()
+{
+    # define max 100
+    # define len 25
+    
+    char db [max][len];
+    char opt;
+    int ind = -1;
+
+    do
+    {
+        printf("\n DataBase \n");
+        printf(" A :: Add Name \n");
+        printf(" D :: Display all Name \n");
+        printf(" Q :: Quit \n");
+        printf(" Enter your choice: ");
+        scanf("%c", &opt);
+
+        opt = toupper(opt);
+
+        switch (opt)
+        {
+            case 'A':
+                if (ind == max)
+                    printf("\n Data Base is full \n");
+
+                else
+                {
+                    printf("\nEnter full Name: ");
+                    ind++;
+                    while(getc(stdin) != '\n'); // fflush(stdin);
+                    fgets(db[ind], len, stdin);
+
+                    printf("\n Successfully Stored \n");
+                }
+                break;
+
+            case 'D':
+                while(getc(stdin) != '\n'); // fflush(stdin);
+                if (ind == -1)
+                    printf("\n Empty DataBase \n");
+
+                else
+                {
+                    printf("\n Output \n");
+                    for (int i = 0; i <=ind; i++)
+                        printf(" %s \n", db[i]);
+                }
+                break;
+            
+            case 'Q':
+                printf("\n Exiting... \n");
+                break;
+
+            default:
+                printf("\n Invalid Choice \n");
+        }
+        
+    }while (opt != 'Q');
+}
+
+// Testing
+void main ()
+{
+    database();
+}
