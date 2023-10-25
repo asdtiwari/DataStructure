@@ -1,0 +1,47 @@
+/* Program that counts the occurrence of digit 0-9 in a string */
+
+# include <stdio.h>
+# include <stdlib.h>
+# define max 10
+int * count_digit (char * ch)
+{
+    # define no_of_digit max
+    int * tmp = NULL;
+
+    tmp = (int *)malloc(sizeof(int) * no_of_digit);
+
+    if (tmp == NULL)
+        return NULL;
+
+    for (int i = 0; i < no_of_digit; i++)
+        *(tmp + i) = 0;
+
+    for (int i = 0; *(ch + i) != '\0'; i++)
+    {
+        if (*(ch + i) >= 48 && *(ch + i) <= 57)
+        {
+            *(tmp + (int)(*(ch + i)) - 48) += 1;
+        }
+    }
+
+    return tmp;
+}
+
+void print_count (int * tmp)
+{
+
+    printf("\n Output \n");
+    for (int i = 0; i < max; i++)
+        printf(" Found %d occurence of %c \n", *(tmp + i), (char)(i + 48));
+
+}
+
+// Testing
+void main ()
+{
+    char * ch = "9200608291 9340261053 7415436431 7489036022 7000454120 7766044641";
+    
+    int * tmp = count_digit(ch);
+
+    print_count(tmp);
+}
