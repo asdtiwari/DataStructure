@@ -1,0 +1,47 @@
+/* Program that counts the occurence of each lowercase letter of the alphabet in a string */
+
+# include <stdio.h>
+# include <stdlib.h>
+# define max 26
+
+int * count_char (char * ch)
+{
+    # define no_of_alpha max
+    int * tmp = NULL;
+
+    tmp = (int *)malloc(sizeof(int) * no_of_alpha);
+
+    if (tmp == NULL)
+        return NULL;
+
+    for (int i = 0; i < no_of_alpha; i++)
+        *(tmp + i) = 0;
+
+    for (int i = 0; *(ch + i) != '\0'; i++)
+    {
+        if (*(ch + i) >= 97 && *(ch + i) <= 122)
+        {
+            *(tmp + (int)(*(ch + i)) - 97) += 1;
+        }
+    }
+
+    return tmp;
+}
+
+void print_count (int * tmp)
+{
+    printf("\n Output \n");
+    for (int i = 0; i < max; i++)
+        printf(" Found %d occurence of %c \n", *(tmp + i), (char)(i + 97));
+
+}
+
+// Testing
+void main ()
+{
+    char * ch = "Akhilesh is working to secure the job in MNCs with good package.";
+    
+    int * tmp = count_char(ch);
+
+    print_count(tmp);
+}
