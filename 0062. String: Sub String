@@ -1,0 +1,35 @@
+/* Program to extract a substring from the given string */
+
+# include <stdio.h>
+# include <stdlib.h>
+
+int str_len (char * s)
+{
+	int len;
+	for (len = 0; *(s + len) != '\0'; len++);
+	
+	return len;
+}
+
+char * substring (char * str, int start, int len)
+{
+    char * s;
+    int size = str_len(str);
+    
+    s = (char *) malloc(len + 1);
+    
+    int j = 0;
+    for (int i = start; i < size && len != 0; i++, j++, len--)
+        *(s + j) = *(str + i);
+    *(s + j) = '\0';
+        
+    return s;
+}
+
+// Testing
+void main ()
+{
+    char *str = "Akhilesh Tiwari awakes at 3 AM";
+    
+    printf("%s", substring(str, 0, 8));
+}
