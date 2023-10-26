@@ -1,0 +1,29 @@
+/* Program to enter any string and convert into lowercase */
+
+# include <stdio.h>
+
+int str_len (char * s)
+{
+	int len;
+	for (len = 0; *(s + len) != '\0'; len++);
+	
+	return len;
+}
+
+void to_lowercase (char * s)
+{
+	int size = str_len(s);
+	for (int i = 0; i < size; i++)
+		if(*(s + i) >= 65 && *(s + i) <= 90)
+			*(s + i) = *(s + i) + 32;
+}
+
+// Testing
+void main ()
+{
+	char s[] = "Most of the languages uses UNICODE for characters while C and CPP uses ASCII.";
+	printf("Original I/p \n %s \n", s);
+	
+	to_lowercase(s);
+	printf("Lowercase O/p \n %s \n", s);
+}
