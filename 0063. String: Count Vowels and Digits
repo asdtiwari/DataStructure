@@ -1,0 +1,47 @@
+/* Program to count the number of vowels and digits in a given string */
+
+# include <stdio.h>
+
+int str_len (char * s)
+{
+	int len;
+	for (len = 0; *(s + len) != '\0'; len++);
+	
+	return len;
+}
+
+void count_vowels_digits (char * str, int * vowels, int * digits)
+{
+    char ch;
+    for (int i = 0; *(str + i) != '\0'; i++)
+    {
+        ch = *(str + i);
+        
+        if (ch >= 48 && ch <= 57)
+            *digits += 1;
+        
+        else if (ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U')
+                *vowels += 1;
+        
+        else if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+                *vowels += 1;
+    }
+}
+
+void print_count (char * str)
+{
+    int vowels = 0;
+    int digits = 0;
+    
+    count_vowels_digits(str, &vowels, &digits);
+    
+    printf("\n No. of vowels: %d \n No. of Digits: %d \n", vowels, digits);
+}
+
+// Testing
+int main ()
+{
+    char * str = "123. Ramesh Mandola for Indore 1";
+    
+    print_count(str);
+}
