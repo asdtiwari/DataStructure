@@ -1,0 +1,35 @@
+/* Brute Force String Search */
+
+# include <stdio.h>
+
+int str_len (char * s)
+{
+	int len;
+	for (len = 0; *(s + len) != '\0'; len++);
+	
+	return len;
+}
+
+// s1 for main string and s2 for key string that has to search
+void brute_force (char * s1, char * s2)
+{
+	int size1 = str_len(s1);
+	int size2 = str_len(s2);
+	
+	int i, j;
+	for (i = 0; i <= size1 - size2; i++)
+	{
+		for (j = 0; j < size2 && *(s2 + j) == *(s1 + i + j); j++);
+			if(j >= size2)
+				printf(" Index : %d \n", i);
+	}
+}
+
+// Testing
+void main ()
+{
+	char *s1 = "This is summer vacation and we have to plan for institute project.";
+	char *s2 = "is";
+	
+	brute_force(s1, s2);
+}
