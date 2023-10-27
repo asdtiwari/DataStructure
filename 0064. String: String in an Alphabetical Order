@@ -1,0 +1,55 @@
+/* Program to print the string in an alphabetical order. */
+
+# include <stdio.h>
+
+int str_cmp (char * first, char * second)
+{
+    int i = 0;
+    while(*(first + i) != '\0' && *(second + i) != '\0')
+    {
+        if(*(first + i) != *(second + i))
+            return *(first + i) - *(second + i);
+        
+        i++;
+    }
+    
+    return *(first + i) - *(second + i);
+}
+
+void lexicographically (char * string[], int size)
+{
+    char * tmp;
+    for (int i = 0; i < size - 1; i++)
+    {
+        for (int j = i + 1; j > 0; j--)
+        {
+            if (str_cmp(string[j], string[j - 1]) < 0)
+            {
+                tmp = string[j];
+                string[j] = string[j - 1];
+                string[j - 1] = tmp;
+            }
+            else
+                break;
+        }
+    }
+}
+
+void print (char * string[], int size)
+{
+    for (int i = 0; i < size; i++)
+        printf(" %s \n", string[i]);
+}
+
+// Testing
+void main ()
+{
+    char * str [] = {"Akhilesh", "Aeshna", "Abhishek", "Aditya", "Aditi"};
+    
+    printf("Output \n");
+    print(str, 5);
+    
+    printf("Sorted \n");
+    lexicographically(str, 5);
+    print(str, 5);
+}
