@@ -1,0 +1,61 @@
+/* Program to sort the elements of an array using selection sort technique */
+/* This technique is faster than bubble sorting cuz of less swapping */
+
+# include <stdio.h>
+
+void swap (int * num1, int * num2)
+{
+	int tmp = *num1;
+	*num1 = *num2;
+	*num2 = tmp;
+}
+
+void selection_sort (int * array, int size)
+{
+	for (int i = 0; i < size - 1; i++)
+	{
+		for (int j = i + 1; j < size; j++)
+		{
+			if (*(array + i) > *(array + j))
+				swap((array + i), (array + j));
+		}
+	}
+}
+
+void write (int *array, int size)
+{
+    printf("\n Enter %d elements in array \n", size);
+    
+    for(int i = 0; i < size; i++)
+        scanf("%d", (array+i));
+    
+    printf(" Elements inserted successfullly \n");
+}
+
+void read (int *array, int size)
+{
+    printf("\n Elements of Array \n");
+    
+    for(int i = 0; i < size; i++)
+        printf(" %d ", *(array + i));
+        
+    printf("\n All elements printed \n");
+}
+
+// Testing
+void main ()
+{
+	# define max 100
+	int array[max];
+	
+	int size;
+	printf("\n Enter the size of array (<= 100): ");
+	scanf("%d", &size);
+	
+	write(&array[0], size);
+	read(&array[0], size);
+
+	selection_sort(&array[0], size);
+	printf("\n Sorted Array \n");
+	read(&array[0], size);
+}
