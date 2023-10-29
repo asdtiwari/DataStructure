@@ -26,8 +26,6 @@ int no_of_digit (int num)
 	return count;
 }
 
-void read (int *array, int size);
-
 int radix_sort (int * array, int size)
 {
 	# define radix 10
@@ -58,7 +56,6 @@ int radix_sort (int * array, int size)
 				*(array + y) = bucket[x][z];
 		
 		divisor *= 10;
-		read(array, size);
 	}
 }
 
