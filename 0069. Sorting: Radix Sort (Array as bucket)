@@ -1,0 +1,102 @@
+/* Program to sort the element of an array using radix sort technique */
+
+# include <stdio.h>
+
+int max (int * array, int size)
+{
+	int largest = *array;
+	
+	for (int i = 0; i < size; i++)
+		if (*(array + i) > largest)
+			largest = *(array + i);
+			
+	return largest;
+}
+
+int no_of_digit (int num)
+{
+	int count = 0;
+	
+	while (num > 0)
+	{
+		count++;
+		num /= 10;
+	}
+	
+	return count;
+}
+
+void read (int *array, int size);
+
+int radix_sort (int * array, int size)
+{
+	# define radix 10
+	int bucket [radix][size];
+	int element_in_bucket [radix];
+	
+	int largest = max(array, size);
+	int passes = no_of_digit(largest);
+	
+	// for seperating the digits
+	int index, divisor = 1;
+	
+	for (int i = 0; i < passes; i++)
+	{
+	    for (int j = 0; j < radix; j++)
+	        element_in_bucket[j] = 0;
+
+		for (int j = 0; j < size; j++)
+		{
+			index = (*(array + j) / divisor) % 10;
+			
+			bucket[index][element_in_bucket[index]] = *(array + j);
+			element_in_bucket[index] += 1;
+		}
+		
+		for (int x = 0, y = 0; x < radix; x++)
+			for (int z = 0; z < element_in_bucket[x]; z++, y++)
+				*(array + y) = bucket[x][z];
+		
+		divisor *= 10;
+		read(array, size);
+	}
+}
+
+
+void write (int *array, int size)
+{
+    printf("\n Enter %d elements in array \n", size);
+    
+    for(int i = 0; i < size; i++)
+        scanf("%d", (array+i));
+    
+    printf(" Elements inserted successfullly \n");
+}
+
+void read (int *array, int size)
+{
+    printf("\n Elements of Array \n");
+    
+    for(int i = 0; i < size; i++)
+        printf(" %d ", *(array + i));
+        
+    printf("\n All elements printed \n");
+}
+
+// Testing
+void main ()
+{
+	# define max 100
+	int array[max];
+	
+	int size;
+	printf("\n Enter the size of array (<= 100): ");
+	scanf("%d", &size);
+	
+	write(&array[0], size);
+	read(&array[0], size);
+
+	radix_sort(&array[0], size);
+	printf("\n Sorted Array \n");
+	read(&array[0], size);
+}
