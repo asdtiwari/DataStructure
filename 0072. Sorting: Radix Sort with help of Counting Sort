@@ -1,4 +1,4 @@
-/* Program to sort the array using the counting sort technique */
+/* Program to sort the array using the radix sort technique with the help of counting sort */
 
 # include <stdio.h>
 
